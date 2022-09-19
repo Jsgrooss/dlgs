@@ -20,10 +20,11 @@ import torch.nn.functional as F
 class Model(nn.Module):
     def __init__(self):                      # on init
         super(Model, self).__init__()        # call super class init
-        self.conv1 = nn.Conv2d(1, 32, 3, 1)  # create conv layer
-        self.conv2 = nn.Conv2d(32, 1, 2, 1)  # create conv layer
-        self.dense1 = nn.Linear(625, 500)    # create dense layer
-        self.dense2 = nn.Linear(500, 10)     # create dense layer
+        self.conv1 = nn.Conv2d(1, 28, 3, 1)  # create conv layer
+        self.conv2 = nn.Conv2d(28, 1, 2, 1)  # create conv layer
+        self.dense1 = nn.Linear(625, 250)    # create dense layer
+        self.dense2 = nn.Linear(250, 10)     # create dense layer
+        #self.dense3 = nn.Linear(250, 10)     # create dense layer
         # self.decode = nn.Linear(10, 784)   # for autoencoder
 
     def forward(self, x):              # send data through neural net
@@ -34,6 +35,8 @@ class Model(nn.Module):
         x = self.dense1(x)             # send x through first dense layer
         x = F.relu(x)                  # activation function
         x = self.dense2(x)             # last layer
+        #x = F.relu(x)
+        #x = self.dense3(x)
         # x = self.decode(x)           # re construct x from compression for auto encoder generative stuff
         return x  # x.reshape(x.shape[0], 28, 28)
 

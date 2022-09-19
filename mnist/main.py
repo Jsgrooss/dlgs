@@ -32,7 +32,7 @@ def main():
     criterion = nn.CrossEntropyLoss()                      # loss function
     optimizer = optim.SGD(model.parameters(), lr=0.01)     # optimization helper
     for x, y in loader:                                    # loop through batches
-        optimizer.zero_grad()      # clean gradients of parameters (remember, this loop is about finder better params)
+        optimizer.zero_grad()       # clean gradients of parameters (remember, this loop is about finder better params)
         pred = model(x)            # make prediction
         loss = criterion(pred, y)  # calculate loss with respect to prediction
         loss.backward()            # calculate gradients of model.parameters() with respect to loss
